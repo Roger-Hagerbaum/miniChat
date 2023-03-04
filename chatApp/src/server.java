@@ -8,9 +8,9 @@ import java.net.Socket;
 
  public class server {
 
-     public void startServer () throws IOException{
+     public void startServer (int port) throws IOException{
         
-         try (ServerSocket serverSocket = new ServerSocket(88)) {
+         try (ServerSocket serverSocket = new ServerSocket(port)) {
             Socket socket = serverSocket.accept();
 
                  InputStream inputStream = socket.getInputStream();

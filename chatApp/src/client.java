@@ -7,7 +7,7 @@ import java.net.Socket;
 
 class client {
 
-    public void runClient() throws IOException {
+    public void runClient(int port) throws IOException {
         try (Socket socket = new Socket("localhost", 88)) {
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
