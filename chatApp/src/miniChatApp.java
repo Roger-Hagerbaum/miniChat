@@ -3,7 +3,7 @@ import java.io.IOException;
 
 public class miniChatApp {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         int portServer = 77; // TODO get from api
         int portClient = 77; // TODO get from  api
         String user = "Test1"; // TODO get from api and implement
