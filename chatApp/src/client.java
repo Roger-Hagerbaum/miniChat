@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 class client {
 
-    public void runClient(int port) throws IOException {
+    public void runClient(int port , String user) throws IOException {
         Socket socket;
-
         DataInputStream dataInput = null;
         DataOutputStream dataOutputStream = null;
+        String messageSent;
 
         try {
             socket = new Socket("localhost", port);
@@ -28,11 +28,11 @@ class client {
 
         while (true){
 
-            Scanner scanner = new Scanner(dataInput);
+            Scanner scanner = new Scanner(dataInput); 
             System.out.println("Enter message");
-            String userMessage = scanner.nextLine();
-
-            dataOutputStream.writeUTF(userMessage);
+            String userMessage = scanner.nextLine(); 
+            messageSent = user + "," + userMessage;
+            dataOutputStream.writeUTF(messageSent);
         }
 
 

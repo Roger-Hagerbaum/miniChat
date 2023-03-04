@@ -10,8 +10,7 @@ public class miniChatApp {
         server server = new server();
         client client = new client();
         server.startServer(portServer);
-        client.runClient(portClient);
+        client.runClient(portClient , user);
     }
-
 
 }
