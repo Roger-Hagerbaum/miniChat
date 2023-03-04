@@ -16,9 +16,19 @@ import java.net.Socket;
                  InputStream inputStream = socket.getInputStream();
                  DataInputStream dataInputStream = new DataInputStream(inputStream);
                  
-                String message = dataInputStream.readUTF();
+                 String message;
+                // String userName; TODO implement varibel
+                // String JWT; TODO implement varibel
+                // String messageResived; TODO implement varibel
+                 while (true){
+                 try {
+                     message = dataInputStream.readUTF();
+                 } catch (IOException e) {
+                     throw new RuntimeException(e);
+                 }
 
-                System.out.println(message);
+                System.out.println("Message Resived: " + message);
+             }
         }
          }
          
