@@ -1,10 +1,10 @@
 package com.minichat;
 
-import java.util.List;
-
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 
 public interface UserRepository extends CrudRepository<User, Long> {
-    List<User> findByuserName(String userName);
+    @Query("SELECT u.port FROM User u WHERE u.userName = ?1")
+    int getUserPort(String userName);
 }
