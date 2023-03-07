@@ -12,7 +12,7 @@ public class ChatApiController {
     }
     @PostMapping("/userloggedin")
     public Boolean userLoggedIn(@RequestParam String userName){
-
+            System.out.println(userRepository.getLogginStatus(userName));
         return  userRepository.getLogginStatus(userName);
 
     }
