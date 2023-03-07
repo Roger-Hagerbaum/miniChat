@@ -36,4 +36,10 @@ public class ChatApiController {
         return port;
 
     }
+    @PostMapping("/userport")
+    public int userPort(@RequestParam String userName){
+        System.out.println(userRepository.getUserPort(userName));
+        return userRepository.getUserPort(userName);
+
+    }
 }
