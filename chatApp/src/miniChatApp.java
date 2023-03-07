@@ -12,8 +12,9 @@ public class miniChatApp {
         // server.startServer(portServer);
         // client.runClient(portClient , user);
         //post.POSTLoggin("Jack", "pass1");
-        boolean isLoggedIn = post.POSTUserLoggedIn(user);
-        System.out.println(isLoggedIn);
+        // boolean isLoggedIn = post.POSTUserLoggedIn(user);
+        // System.out.println(isLoggedIn);
+        post.POSTuserPort("Tess");
     }
 
 }
