@@ -25,5 +25,25 @@ public class post {
         return port;
 
     }
+    public boolean POSTUserLoggedIn(String user) throws IOException {
+
+        URL postUrl = new URL("http://localhost:8080/userloggedin?userName="+ user);
+        HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
+        postConnection.setRequestMethod("POST");
+
+        BufferedReader inputStream = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
+        String inputRespons;
+        StringBuilder responseBuilder = new StringBuilder();
+        while ((inputRespons = inputStream.readLine()) != null) {
+            responseBuilder.append(inputRespons);
+        }
+        inputStream.close();
+        
+        boolean isUserLoggedIn = Boolean.parseBoolean(String.valueOf(responseBuilder));
+        System.out.println(responseBuilder.toString());
+        System.out.println(isUserLoggedIn);
+        return isUserLoggedIn;
+
+    }
     
 }
