@@ -10,7 +10,12 @@ public class ChatApiController {
     public ChatApiController(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-   
+    @PostMapping("/userloggedin")
+    public Boolean userLoggedIn(@RequestParam String userName){
+
+        return  userRepository.getLogginStatus(userName);
+
+    }
     // Super simple loggin missing logout function
     @PostMapping("/loggin")
     public String logginUser(@RequestParam String userName , String password){
