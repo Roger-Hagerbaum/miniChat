@@ -4,7 +4,7 @@ import java.net.URL;
 
 public class post {
 
-    public String POSTLoggin(String user, String password) throws IOException {
+    public int POSTLoggin(String user, String password) throws IOException {
 
         
         URL postUrl = new URL("http://localhost:8080/loggin?userName="+ user + "&password=" + password);
@@ -18,13 +18,11 @@ public class post {
             responseBuilder.append(inputRespons);
         }
         inputStream.close();
-
-     
-        System.out.println(responseBuilder.toString());
-        String result = String.valueOf(responseBuilder);
-        System.out.println(result);
         
-        return result;
+        int port = Integer.parseInt(String.valueOf(responseBuilder));
+        System.out.println(responseBuilder.toString());
+        System.out.println(port);
+        return port;
 
     }
     

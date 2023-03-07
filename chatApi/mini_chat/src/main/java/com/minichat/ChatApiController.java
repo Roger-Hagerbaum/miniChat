@@ -18,8 +18,9 @@ public class ChatApiController {
     }
     // Super simple loggin missing logout function
     @PostMapping("/loggin")
-    public String logginUser(@RequestParam String userName , String password){
+    public int logginUser(@RequestParam String userName , String password){
         String loggin = null;
+        int port = 0;
         boolean logginStatus = userRepository.getLogginStatus(userName);
         String testPasword = userRepository.getUserName(userName);
         if(logginStatus == true){
@@ -27,18 +28,12 @@ public class ChatApiController {
         } else if (testPasword.equals(password)) {
             userRepository.setLogginStatus(userName);
             loggin = "You have logged in";
+            port = userRepository.getUserPort(userName);
         }else {
             loggin = "Wrong username or password";
         }
         System.out.println(loggin);
-        return loggin;
+        return port;
 
     }
-
-     @PostMapping("/user")
-     public int getUserPort(@RequestParam String userName) {
-        int test = userRepository.getUserPort(userName);
-        return test ;
-    }
-  
 }
