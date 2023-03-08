@@ -4,7 +4,7 @@ import java.net.URL;
 
 public class post {
 
-    public int POSTLoggin(String user, String password) throws IOException {
+    public int loggin(String user, String password) throws IOException {
 
         
         URL postUrl = new URL("http://localhost:8080/loggin?userName="+ user + "&password=" + password);
@@ -25,7 +25,7 @@ public class post {
         return port;
 
     }
-    public boolean POSTUserLoggedIn(String user) throws IOException {
+    public boolean userLoggedIn(String user) throws IOException {
 
         URL postUrl = new URL("http://localhost:8080/userloggedin?userName="+ user);
         HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
@@ -45,7 +45,7 @@ public class post {
         return isUserLoggedIn;
     }
 
-    public int POSTuserPort(String user) throws IOException {
+    public int userPort(String user) throws IOException {
 
         
         URL postUrl = new URL("http://localhost:8080/userport?userName="+ user);

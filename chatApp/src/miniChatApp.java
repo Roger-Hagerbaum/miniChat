@@ -17,11 +17,11 @@ public class miniChatApp {
         user = loggin.nextLine();
         System.out.println("Enter password");
         password = loggin.nextLine();
-        portServer = post.POSTLoggin(user, password);
+        portServer = post.loggin(user, password);
         System.out.println("Enter the user name to other client");
         clientUser = loggin.nextLine();
-        portClient = post.POSTuserPort(clientUser);
-        server.startServer(portServer);
+        portClient = post.userPort(clientUser);
+        server.startServer(portServer,clientUser);
         client.runClient(portClient , clientUser); 
         loggin.close();
     }
