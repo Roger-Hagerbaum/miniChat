@@ -5,8 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
  public class server {
-
-    public void startServer (int port) throws IOException{
+     post post = new post();
+    public void startServer (int port,String clientUser) throws IOException{
         Thread ServerThread1 = new Thread(() -> {
 
             try (ServerSocket serverSocket = new ServerSocket(port)) {
@@ -30,8 +30,13 @@ import java.net.Socket;
                     String[] split = message.split(",");
                     userName = split[0];
                     messageResived = split[1];
+                    if(post.userLoggedIn(clientUser) == true){
+                        System.out.println("Message from user: "+ userName + " " + messageResived);
+                    }else {
+                        System.out.println("The user was not logged in");
+                    }
 
-                    System.out.println("Message from user: "+ userName + " " + messageResived);
+
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);

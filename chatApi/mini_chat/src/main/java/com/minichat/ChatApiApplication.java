@@ -1,13 +1,13 @@
-package com.minichat.mini_chat;
+package com.minichat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MiniChatApplication {
+public class ChatApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MiniChatApplication.class, args);
+		SpringApplication.run(ChatApiApplication.class, args);
 	}
 
 }

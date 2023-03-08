@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+chatApp/out/production/chatApp/client.class
+chatApp/out/production/chatApp/miniChatApp.class
+chatApp/out/production/chatApp/post.class
+chatApp/out/production/chatApp/server.class
