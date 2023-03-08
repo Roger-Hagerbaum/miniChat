@@ -1,19 +1,29 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 public class miniChatApp {
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        int portServer = 77; // TODO get from api
-        int portClient = 88; // TODO get from  api
-        String user = "Jack"; // TODO get from api and implement
+        int portServer;
+        int portClient;
+        String password;
+        String user;
+        String clientUser;
         post post = new post();
-        // server server = new server();
-        // client client = new client();
-        // server.startServer(portServer);
-        // client.runClient(portClient , user);
-        //post.POSTLoggin("Jack", "pass1");
-        boolean isLoggedIn = post.POSTUserLoggedIn(user);
-        System.out.println(isLoggedIn);
+        server server = new server();
+        client client = new client();
+        Scanner loggin = new Scanner(System.in);
+        System.out.println("Enter username");
+        user = loggin.nextLine();
+        System.out.println("Enter password");
+        password = loggin.nextLine();
+        portServer = post.loggin(user, password);
+        System.out.println("Enter the user name to other client");
+        clientUser = loggin.nextLine();
+        portClient = post.userPort(clientUser);
+        server.startServer(portServer,clientUser);
+        client.runClient(portClient , clientUser); 
+        loggin.close();
     }
 
 }
