@@ -27,7 +27,7 @@ import java.net.Socket;
                         throw new RuntimeException(e);
                     }
 
-                    String[] split = message.split(",");
+                    String[] split = message.split(";;");
                     userName = split[0];
                     messageResived = split[1];
                     if(post.userLoggedIn(clientUser) == true){
