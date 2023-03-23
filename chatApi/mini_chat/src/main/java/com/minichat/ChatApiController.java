@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ChatApiController {
-    UserRepository userRepository;
-
+     UserRepository userRepository;
 
     public ChatApiController(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -21,7 +20,7 @@ public class ChatApiController {
 //        return  userRepository.getLogginStatus(userName);
 
     //}
-    // Super simple loggin missing logout function
+//     Super simple loggin missing logout function
 //    @PostMapping("/loggin")
 //    public int logginUser(@RequestParam String userName , String password){
 //        String loggin = null;
