@@ -6,6 +6,7 @@ public class miniChatApp {
     public static void main(String[] args) throws IOException, InterruptedException {
         int portServer;
         int portClient;
+        String userDetails;
         String password;
         String user;
         String clientUser;
@@ -17,7 +18,8 @@ public class miniChatApp {
         user = loggin.nextLine();
         System.out.println("Enter password");
         password = loggin.nextLine();
-        portServer = post.loggin(user, password);
+        userDetails = post.loggin(user,password);
+        portServer = 0;
         System.out.println("Enter the user name to other client");
         clientUser = loggin.nextLine();
         portClient = post.userPort(clientUser);

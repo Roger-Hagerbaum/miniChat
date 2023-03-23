@@ -10,15 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthLoginController {
 
     private final Token token;
+    private final UserRepository userRepository;
 
-    public AuthLoginController(Token token) {
+    public AuthLoginController(Token token, UserRepository userRepository) {
         this.token = token;
+        this.userRepository = userRepository;
     }
 
 
     @PostMapping("/token")
     public String token(Authentication authentication) {
-        return token.generateToken(authentication);
+        String returnString;
+        int port = userRepository.getUserPort(authentication.getName());
+
+        returnString = token.generateToken(authentication) +";;"+ port;
+        return returnString;
     }
 
 }
