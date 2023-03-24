@@ -23,17 +23,16 @@ public class post {
         }
         inputStream.close();
         userDetails = String.valueOf(responseBuilder);
-        System.out.println(userDetails);
 
         return userDetails;
 
     }
-    public boolean userLoggedIn(String user) throws IOException {
+    public String userLoggedIn(String user, String jwt) throws IOException {
 
         URL postUrl = new URL("http://localhost:8080/userloggedin?userName="+ user);
         HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
         postConnection.setRequestMethod("POST");
-
+        postConnection.setRequestProperty("Authorization","Bearer "+ jwt);
         BufferedReader inputStream = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
         String inputRespons;
         StringBuilder responseBuilder = new StringBuilder();
@@ -42,18 +41,17 @@ public class post {
         }
         inputStream.close();
 
-        boolean isUserLoggedIn = Boolean.parseBoolean(String.valueOf(responseBuilder));
+        String isUserLoggedIn = String.valueOf(responseBuilder);
 
-        System.out.println(isUserLoggedIn);
+
         return isUserLoggedIn;
     }
+    public int userPort(String user , String jwt) throws IOException {
 
-    public int userPort(String user) throws IOException {
-
-        
-        URL postUrl = new URL("http://localhost:8080/userport?userName="+ user);
+        URL postUrl = new URL("http://localhost:8080/userport?userName=" +user);
         HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
         postConnection.setRequestMethod("POST");
+        postConnection.setRequestProperty("Authorization","Bearer "+ jwt);
 
         BufferedReader inputStream = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
         String inputRespons;
