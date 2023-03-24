@@ -18,8 +18,8 @@ public class ChatApiController {
 
     @PostMapping("/userloggedin")
     public String userLoggedIn(Authentication authentication){
-    String test = authentication.getName();
-        return test;
+
+        return   authentication.getName();
 
     }
 
