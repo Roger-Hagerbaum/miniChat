@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u.port FROM User u WHERE u.username= ?1")
     int getUserPort(String userName);
 
-
     boolean existsByUsername(String username);
+    long countByUsername(String userName);
 }
 
