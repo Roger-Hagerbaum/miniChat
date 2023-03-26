@@ -29,7 +29,7 @@ public class post {
     }
     public String userLoggedIn(String user, String jwt) throws IOException {
 
-        URL postUrl = new URL("http://localhost:8080/userloggedin?userName="+ user);
+        URL postUrl = new URL("http://localhost:8080/api/closed/userloggedin?userName="+ user);
         HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
         postConnection.setRequestMethod("POST");
         postConnection.setRequestProperty("Authorization","Bearer "+ jwt);
@@ -48,7 +48,7 @@ public class post {
     }
     public int userPort(String user , String jwt) throws IOException {
 
-        URL postUrl = new URL("http://localhost:8080/userport?userName=" +user);
+        URL postUrl = new URL("http://localhost:8080/api/closed/userport?userName=" +user);
         HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
         postConnection.setRequestMethod("POST");
         postConnection.setRequestProperty("Authorization","Bearer "+ jwt);

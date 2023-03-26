@@ -36,9 +36,12 @@ public class SecurityConfig {
                 .cors().disable()
                 .formLogin().disable()
                 .sessionManagement().disable()
-                .authorizeRequests(auth -> auth
-                        .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests().requestMatchers("/api/open/**").permitAll()
+
+                .anyRequest().authenticated()
+
+
+                .and()
                 .userDetailsService(userDetailService)
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .httpBasic()
