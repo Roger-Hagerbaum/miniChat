@@ -18,6 +18,30 @@ public class post {
         }
         return respons ;
 
+    }
+    private String testLogin(String user, String password) throws IOException {
+        String userDetails;
+        int i = 0;
+        URL postUrl = new URL("http://localhost:8080/api/auth/token");
+        HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
+        String auth = user + ":" + password;
+        String basicAuth = "Basic " + new String(Base64.getEncoder().encode(auth.getBytes()));
+        postConnection.setRequestMethod("POST");
+        postConnection.setRequestProperty("Authorization", basicAuth);
+
+
+
+        int test = postConnection.getResponseCode();
+        BufferedReader inputStream = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
+        String inputRespons;
+        StringBuilder responseBuilder = new StringBuilder();
+        while ((inputRespons = inputStream.readLine()) != null) {
+            responseBuilder.append(inputRespons);
+        }
+        inputStream.close();
+        userDetails = String.valueOf(responseBuilder);
+
+        return userDetails;
 
     }
 
@@ -69,30 +93,15 @@ public class post {
         postConnection.getInputStream();
         return "User created";
     }
-    private String testLogin(String user, String password) throws IOException {
-        String userDetails;
-        int i = 0;
-            URL postUrl = new URL("http://localhost:8080/api/auth/token");
-            HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
-            String auth = user + ":" + password;
-            String basicAuth = "Basic " + new String(Base64.getEncoder().encode(auth.getBytes()));
-            postConnection.setRequestMethod("POST");
-            postConnection.setRequestProperty("Authorization", basicAuth);
-
-
-
-        int test = postConnection.getResponseCode();
+    public String doUserExist(String user) throws IOException {
+        URL getUrl = new URL("http://localhost:8080/api/open/user?userName=" +user);
+        HttpURLConnection postConnection = (HttpURLConnection) getUrl.openConnection();
+        postConnection.setRequestMethod("GET");
         BufferedReader inputStream = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
-        String inputRespons;
-        StringBuilder responseBuilder = new StringBuilder();
-        while ((inputRespons = inputStream.readLine()) != null) {
-            responseBuilder.append(inputRespons);
-        }
-        inputStream.close();
-        userDetails = String.valueOf(responseBuilder);
 
-        return userDetails;
+        return inputStream.readLine();
 
     }
+
 
 }

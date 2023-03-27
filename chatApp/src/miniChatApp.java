@@ -11,7 +11,7 @@ public class miniChatApp {
         String user = null;
         String jwt;
         String responsCode = "";
-        String clientUser;
+        String clientUser = "";
         String loginStatus = "Trying to login";
         String answer;
         boolean tryLogIn = true;
@@ -67,8 +67,18 @@ public class miniChatApp {
         port = Integer.parseInt(split[1]);
 
         portServer = port;
-        System.out.println("Enter the user name to other client");
-        clientUser = login.nextLine();
+
+        boolean clientTest = true;
+        while (clientTest){
+            System.out.println("Enter the user name to other client");
+            clientUser = login.nextLine();
+            clientTest = false;
+            if(post.doUserExist(clientUser).equals("false")){
+                System.out.println("User name do not exist pleas try a different name!");
+                clientTest = true;
+            }
+
+        }
         portClient = post.userPort(clientUser ,jwt);
         server.startServer(portServer,clientUser);
         client.runClient(portClient , clientUser , user, jwt);
