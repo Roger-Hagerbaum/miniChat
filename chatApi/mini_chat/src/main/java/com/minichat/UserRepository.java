@@ -14,6 +14,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     int getUserPort(String userName);
 
     boolean existsByUsername(String username);
-    long countByUsername(String userName);
+    @Query("SELECT COUNT (*) FROM User u")
+    int countByUsername(String userName);
 }
 

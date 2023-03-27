@@ -5,28 +5,22 @@ import java.util.Base64;
 
 public class post {
 
-    public String  loggin(String user, String password) throws IOException {
-        String userDetails;
-        int i = 0;
-        URL postUrl = new URL("http://localhost:8080/api/auth/token");
-        HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
-        String auth = user + ":" + password;
-        String basicAuth = "Basic " + new String(Base64.getEncoder().encode(auth.getBytes()));
-        postConnection.setRequestMethod("POST");
-        postConnection.setRequestProperty("Authorization", basicAuth);
-
+    public String login(String user, String password) throws IOException {
+        URL getUrl = new URL("http://localhost:8080/api/open/user?userName=" +user);
+        HttpURLConnection postConnection = (HttpURLConnection) getUrl.openConnection();
+        postConnection.setRequestMethod("GET");
         BufferedReader inputStream = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
-        String inputRespons;
-        StringBuilder responseBuilder = new StringBuilder();
-        while ((inputRespons = inputStream.readLine()) != null) {
-            responseBuilder.append(inputRespons);
+        String respons = inputStream.readLine();
+        if(respons.equals("false")){
+            respons = "false";
+        }else {
+            respons = testLogin(user,password);
         }
-        inputStream.close();
-        userDetails = String.valueOf(responseBuilder);
+        return respons ;
 
-        return userDetails;
 
     }
+
     public String userLoggedIn(String user, String jwt) throws IOException {
 
         URL postUrl = new URL("http://localhost:8080/api/closed/userloggedin?userName="+ user);
@@ -65,6 +59,39 @@ public class post {
         System.out.println(responseBuilder.toString());
         System.out.println(port);
         return port;
+
+    }
+    public String registerNewUser(String user, String password) throws IOException {
+
+        URL postUrl = new URL("http://localhost:8080/api/open/register?userName="+ user + "&password="+ password);
+        HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
+        postConnection.setRequestMethod("POST");
+        postConnection.getInputStream();
+        return "User created";
+    }
+    private String testLogin(String user, String password) throws IOException {
+        String userDetails;
+        int i = 0;
+            URL postUrl = new URL("http://localhost:8080/api/auth/token");
+            HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
+            String auth = user + ":" + password;
+            String basicAuth = "Basic " + new String(Base64.getEncoder().encode(auth.getBytes()));
+            postConnection.setRequestMethod("POST");
+            postConnection.setRequestProperty("Authorization", basicAuth);
+
+
+
+        int test = postConnection.getResponseCode();
+        BufferedReader inputStream = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
+        String inputRespons;
+        StringBuilder responseBuilder = new StringBuilder();
+        while ((inputRespons = inputStream.readLine()) != null) {
+            responseBuilder.append(inputRespons);
+        }
+        inputStream.close();
+        userDetails = String.valueOf(responseBuilder);
+
+        return userDetails;
 
     }
 
