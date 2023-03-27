@@ -15,10 +15,10 @@ public class UserDetailService  implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userRepository
-                .findByUsername(userName)
-                .map(UserDetail::new)
-                .orElseThrow(() -> new UsernameNotFoundException("Username not found: " + userName));
+
+            return userRepository.findByUsername(userName).map(UserDetail::new).orElseThrow(() -> new UsernameNotFoundException("Username not found: " + userName));
+
+
 
     }
 }

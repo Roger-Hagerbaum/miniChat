@@ -1,28 +1,20 @@
 package com.minichat;
 
-import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
 
 public interface UserRepository extends JpaRepository<User, Long> {
+
    Optional<User> findByUsername(String userName);
     @Query("SELECT u.port FROM User u WHERE u.username= ?1")
     int getUserPort(String userName);
 
+    boolean existsByUsername(String username);
+    @Query("SELECT COUNT (*) FROM User u")
+    int countByUsername(String userName);
+}
 
- @Query("SELECT u.password FROM User u WHERE u.username= ?1")
-    String getUserName(String userName);
-
-//    @Query("SELECT u.loggin FROM User u WHERE u.userName = ?1")
-//    boolean getLogginStatus(String userName);
-//
-//    @Transactional
-//    @Modifying
-//    @Query("UPDATE User u SET u.loggin = true WHERE u.userName = ?1")
-//    void setLogginStatus(String userName);
-
-    }

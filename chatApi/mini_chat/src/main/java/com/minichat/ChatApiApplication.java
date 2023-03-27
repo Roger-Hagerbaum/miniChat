@@ -20,6 +20,7 @@ public class ChatApiApplication {
 		return args -> {
 			users.save(new User("Jack",encoder.encode("pass1"),77));
 			users.save(new User("Tess",encoder.encode("pass2"),88));
+
 		};
 	}
 
