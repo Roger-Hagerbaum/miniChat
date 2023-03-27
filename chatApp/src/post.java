@@ -102,6 +102,16 @@ public class post {
         return inputStream.readLine();
 
     }
+    public String endSpring(String user, String jwt) throws IOException {
+
+        URL postUrl = new URL("http://localhost:8080/actuator/shutdown");
+        HttpURLConnection postConnection = (HttpURLConnection) postUrl.openConnection();
+        postConnection.setRequestMethod("POST");
+        postConnection.setRequestProperty("Authorization","Bearer "+ jwt);
+        BufferedReader inputStream = new BufferedReader(new InputStreamReader(postConnection.getInputStream()));
+
+        return "";
+    }
 
 
 }
