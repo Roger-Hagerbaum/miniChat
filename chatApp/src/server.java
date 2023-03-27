@@ -17,7 +17,7 @@ import java.net.Socket;
 
                 String message;
                 String userName;
-                String messageResived;
+                String messageReceived;
                 String JWT;
                 
                 while (true){
@@ -29,10 +29,15 @@ import java.net.Socket;
 
                     String[] split = message.split(";;");
                     userName = split[0];
-                    messageResived = split[1];
+                    messageReceived = split[1];
                     JWT = split[2];
                     if(post.userLoggedIn(clientUser , JWT).equals(clientUser)){
-                        System.out.println(userName + " Sends a message and says: " + messageResived);
+                        if(messageReceived.equals("exit")){
+                            System.out.println(userName + " Has ended the program");
+                            serverSocket.close();
+                            System.exit(0);
+                        }
+                        System.out.println(userName + " Sends a message and says: " + messageReceived);
                     }else {
                         System.out.println("The user was not logged in");
                     }
