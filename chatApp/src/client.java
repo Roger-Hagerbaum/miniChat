@@ -7,6 +7,7 @@ import java.util.Scanner;
 class client {
 
     public void runClient(int port , String connectingUser, String user,String jwt) throws IOException, InterruptedException {
+        post post = new post();
         Socket socket;
         DataInputStream dataInput = null;
         DataOutputStream dataOutputStream = null;
@@ -40,6 +41,7 @@ class client {
                 messageSent = user + ";;" + userMessage + ";;" + jwt;
                 dataOutputStream.writeUTF(messageSent);
                 endProgram = false;
+                post.endSpring(user,jwt);
                 System.exit(0);
             }
             messageSent = user + ";;" + userMessage + ";;" + jwt;
