@@ -18,7 +18,7 @@ import java.net.Socket;
                 String message;
                 String userName;
                 String messageResived;
-                // String JWT; TODO implement varibel
+                String JWT;
                 
                 while (true){
                     try {
@@ -27,11 +27,12 @@ import java.net.Socket;
                         throw new RuntimeException(e);
                     }
 
-                    String[] split = message.split(",");
+                    String[] split = message.split(";;");
                     userName = split[0];
                     messageResived = split[1];
-                    if(post.userLoggedIn(clientUser) == true){
-                        System.out.println("Message from user: "+ userName + " " + messageResived);
+                    JWT = split[2];
+                    if(post.userLoggedIn(clientUser , JWT).equals(clientUser)){
+                        System.out.println(userName + " Sends a message and says: " + messageResived);
                     }else {
                         System.out.println("The user was not logged in");
                     }

@@ -6,12 +6,13 @@ import java.util.Scanner;
 
 class client {
 
-    public void runClient(int port , String user) throws IOException, InterruptedException {
+    public void runClient(int port , String connectingUser, String user,String jwt) throws IOException, InterruptedException {
         Socket socket;
         DataInputStream dataInput = null;
         DataOutputStream dataOutputStream = null;
         String messageSent;
         boolean tryToConnect = true;
+        System.out.println("wating form " + connectingUser);
         while (tryToConnect){
             long millis = System.currentTimeMillis();
         try {
@@ -22,7 +23,7 @@ class client {
             dataInput = new DataInputStream(System.in);
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
         } catch (IOException e) {
-            System.out.println("Could not connect on port");
+            
         }
             Thread.sleep(1000 - millis % 1000);
     }
@@ -33,7 +34,7 @@ class client {
             Scanner scanner = new Scanner(dataInput);
             System.out.println("Enter message");
             String userMessage = scanner.nextLine();
-            messageSent = user + "," + userMessage;
+            messageSent = user + ";;" + userMessage + ";;" + jwt;
             dataOutputStream.writeUTF(messageSent);
         }
 

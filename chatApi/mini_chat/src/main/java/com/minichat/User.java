@@ -13,27 +13,30 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
+    private String username;
     private  String password;
     private int port;
-    private boolean loggin;
 
-    User(){}
 
-    User(String userName, String password, int port, boolean loggin){
-        this.userName = userName;
+
+
+    User(String username, String password, int port){
+        this.username = username;
         this.password = password;
         this.port = port;
-        this.loggin = loggin;
+    }
+
+    public User() {
+
     }
 
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {
@@ -50,9 +53,5 @@ public class User {
     public void setPort(int port) {
         this.port = port;
 }
-    public boolean getloggin() {return loggin;}
-    public void setloggin(boolean loggin) {
-        loggin = loggin;
-    }
 
 }
