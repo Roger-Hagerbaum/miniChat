@@ -18,8 +18,8 @@ public class ChatApiApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(UserRepository users , PasswordEncoder encoder) {
 		return args -> {
-			users.save(new User("Jack",encoder.encode("pass1"),77));
-			users.save(new User("Tess",encoder.encode("pass2"),88));
+			users.save(new User("Jack",encoder.encode("pass1"), "ROLE_USER", 77));
+			users.save(new User("Tess",encoder.encode("pass2"), "ROLE_USER", 88));
 
 		};
 	}

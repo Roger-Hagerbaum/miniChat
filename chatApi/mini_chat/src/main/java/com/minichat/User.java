@@ -15,14 +15,16 @@ public class User {
     private Long id;
     private String username;
     private  String password;
+    private  String roles;
     private int port;
 
 
 
 
-    User(String username, String password, int port){
+    User(String username, String password, String roles, int port){
         this.username = username;
         this.password = password;
+        this.roles = roles;
         this.port = port;
     }
 
@@ -46,6 +48,14 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(int port) {
+        this.roles = roles;
+    }
+
     public int getPort() {
         return port;
     }
