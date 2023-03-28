@@ -22,6 +22,6 @@ public class OpenController {
     @PostMapping("/register")
     public User newUser(@RequestParam String userName , String password){
         int port =  89 + userRepository.countByUsername(userName);
-        return userRepository.save(new User(userName,encoder.encode(password),port));
+        return userRepository.save(new User(userName,encoder.encode(password), "ROLE_USER", port));
     }
 }

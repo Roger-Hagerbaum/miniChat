@@ -37,10 +37,7 @@ public class SecurityConfig {
                 .formLogin().disable()
                 .sessionManagement().disable()
                 .authorizeHttpRequests().requestMatchers("/api/open/**").permitAll()
-
                 .anyRequest().authenticated()
-
-
                 .and()
                 .userDetailsService(userDetailService)
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
